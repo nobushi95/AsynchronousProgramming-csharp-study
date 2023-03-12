@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DeadLock (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DeadLock (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
