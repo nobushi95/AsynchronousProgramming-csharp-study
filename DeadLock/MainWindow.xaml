@@ -16,7 +16,9 @@
         <Button Click="ThreadCheck_Click">Thread Check</Button>
         <Button Click="DeadLockAsyncMethodButton_click">DeadLock AsyncMethod</Button>
         <Button Click="NotDeadLockAsyncMethodButton_Click">NotDeadLock AsyncMethod</Button>
+        <Button Click="NotDeadLockAsyncMethodConfigureAwaitFalseButton_Click">NotDeadLock AsyncMethod ConfigureAwait(false)</Button>
         <Button Click="DeadLockMethodButton_click">DeadLock Method</Button>
         <Button Click="NotDeadLockMethodButton_Click">NotDeadLock Method</Button>
+        <Button Click="NotDeadLockMethodConfigureAwaitFalseButton_Click">NotDeadLock Method ConfigureAwait(false)</Button>
     </StackPanel>
 </Window>

@@ -64,6 +64,11 @@ namespace DeadLock
             Task.Run(async () => await AsyncMethod()).Wait();
         }
 
+        private void NotDeadLockAsyncMethodConfigureAwaitFalseButton_Click(object sender, RoutedEventArgs e)
+        {
+            AsyncMethod().ConfigureAwait(false);
+        }
+
         private void DeadLockMethodButton_click(object sender, RoutedEventArgs e)
         {
             DeadLockMethod();
@@ -72,6 +77,11 @@ namespace DeadLock
         private void NotDeadLockMethodButton_Click(object sender, RoutedEventArgs e)
         {
             NotDeadLockMethod();
+        }
+
+        private void NotDeadLockMethodConfigureAwaitFalseButton_Click(object sender, RoutedEventArgs e)
+        {
+            NotDeadLockMethodConfigureAwaitFalse();
         }
 
         private static async Task AsyncMethod()
@@ -97,5 +107,12 @@ namespace DeadLock
             // NotDeadLockAsyncMethodButton_Click関数と同様の動作となる
             Task.Run(async () => await AsyncMethod()).Wait();
         }
+
+        private static void NotDeadLockMethodConfigureAwaitFalse()
+        {
+            // NotDeadLockAsyncMethodConfigureAwaitFalseButton_Click関数と同様の動作となる
+            AsyncMethod().ConfigureAwait(false);
+        }
+
     }
 }
