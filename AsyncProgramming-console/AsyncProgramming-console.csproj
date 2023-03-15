@@ -6,6 +6,7 @@
     <RootNamespace>AsyncProgramming_console</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
 </Project>
