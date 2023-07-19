@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-using Microsoft.UI.Xaml;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,11 +31,14 @@ namespace DeadLock
             //      ワーカースレッドからワーカースレッドへ遷移した場合の戻り先は呼び出し元のワーカースレッドとは限らない
             // 3. s3への代入はUIスレッドで実行される
             var s1 = $"Before Task: {Environment.CurrentManagedThreadId}"; // ID: UIスレッド
+            Debug.WriteLine(s1);
             Task.Run(() =>
             {
                 var s2 = $"On Task: {Environment.CurrentManagedThreadId}"; // ID: ワーカースレッド
+                Debug.WriteLine(s2);
             }).Wait(); // UIスレッドをロックしない？
             var s3 = $"After Task: {Environment.CurrentManagedThreadId}"; // ID: UIスレッド
+            Debug.WriteLine(s3);
         }
 
         private void DeadLockAsyncMethodButton_click(object sender, RoutedEventArgs e)
@@ -87,11 +91,14 @@ namespace DeadLock
         private static async Task AsyncMethod()
         {
             var s1 = $"Before Task: {Environment.CurrentManagedThreadId}";
+            Debug.WriteLine(s1);
             await Task.Run(() =>
             {
                 var s2 = $"On Task: {Environment.CurrentManagedThreadId}";
+                Debug.WriteLine(s2);
             });
             var s3 = $"After Task: {Environment.CurrentManagedThreadId}";
+            Debug.WriteLine(s3);
         }
 
         // Waitを行うためスレッドセーフでないメソッド
