@@ -32,10 +32,11 @@ namespace DeadLock
             // 3. s3への代入はUIスレッドで実行される
             var s1 = $"Before Task: {Environment.CurrentManagedThreadId}"; // ID: UIスレッド
             Debug.WriteLine(s1);
-            Task.Run(() =>
+            Task.Run(async () =>
             {
                 var s2 = $"On Task: {Environment.CurrentManagedThreadId}"; // ID: ワーカースレッド
                 Debug.WriteLine(s2);
+                await Task.Delay(100);
             }).Wait(); // UIスレッドをロックしない？
             var s3 = $"After Task: {Environment.CurrentManagedThreadId}"; // ID: UIスレッド
             Debug.WriteLine(s3);
