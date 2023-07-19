@@ -35,9 +35,11 @@ namespace DeadLock
             Task.Run(async () =>
             {
                 var s2 = $"On Task: {Environment.CurrentManagedThreadId}"; // ID: ワーカースレッド
-                Debug.WriteLine(s2);
                 await Task.Delay(100);
-            }).Wait(); // UIスレッドをロックしない？
+                Debug.WriteLine(s2);
+            }).Wait();
+            // Wait関数によってTask.Runの中身が実行される際はUIスレッドはロックされる
+            // Task.Runの中にUIスレッドで実行されるものはないため、デッドロックしない
             var s3 = $"After Task: {Environment.CurrentManagedThreadId}"; // ID: UIスレッド
             Debug.WriteLine(s3);
         }
